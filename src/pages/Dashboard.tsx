@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import AdminDashboard from '../components/AdminDashboard';
 
 const Dashboard: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -33,15 +34,22 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="dashboard-container">
-      <h2>Admin Dashboard</h2>
-      <input type="file" onChange={handleFileChange} />
-      {previewUrl && (
-        <div>
-          <img src={previewUrl} alt="Preview" style={{ marginTop: '1rem', maxWidth: '100%', maxHeight: '400px' }} />
+    <div className="dashboard-container" style={{ padding: '1rem' }}>
+    <h2>Admin Dashboard</h2>
+    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <div style={{ flex: 2 }}>
+        <AdminDashboard />
         </div>
-      )}
-      <button onClick={handleUpload}>Subir</button>
+        <div style={{ flex: 1, marginLeft: '2rem' }}>
+        <input type="file" onChange={handleFileChange} />
+        {previewUrl && (
+            <div>
+            <img src={previewUrl} alt="Preview" style={{ marginTop: '1rem', maxWidth: '100%', maxHeight: '300px' }} />
+            </div>
+        )}
+        <button onClick={handleUpload} style={{ marginTop: '1rem' }}>Subir</button>
+        </div>
+    </div>
     </div>
   );
 };
