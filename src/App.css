@@ -33,6 +33,16 @@
   }
 }
 
+.ad-controls {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
 .card {
   padding: 2em;
 }

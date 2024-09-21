@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 const AdminDashboard: React.FC = () => {
-  const [ads, setAds] = useState<any[]>([]); // Initialize ads as an empty array
+  const [ads, setAds] = useState<any[]>([]);
+  const [hiddenAds, setHiddenAds] = useState<number[]>([]);
 
   useEffect(() => {
     const fetchAds = async () => {
@@ -24,23 +22,21 @@ const AdminDashboard: React.FC = () => {
     fetchAds();
   }, []);
 
-  const settings = {
-    vertical: true,
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    dots: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
+  const handleHide = (index: number) => {
+    setHiddenAds((prevHiddenAds) => [...prevHiddenAds, index]);
+  };
+
+  const handleDelete = (index: number) => {
+    setAds((prevAds) => prevAds.filter((_, i) => i !== index));
   };
 
   return (
     <div className="admin-dashboard">
-      <div className="carousel">
-        <Slider {...settings}>
-          {ads.length > 0 ? (
-            ads.map((ad, index) => (
-              <div key={index} className={`ad ad-slide ${ad.ad_type}`}>
+      <div className="ad-list">
+        {ads.length > 0 ? (
+          ads.map((ad, index) =>
+            hiddenAds.includes(index) ? null : (
+              <div key={index} className={`ad ad-item ${ad.ad_type}`}>
                 {ad.ad_type === 'banner' ? (
                   <div className="ad-banner">
                     {ad.image_url && <img src={ad.image_url} alt={ad.ad_title} />}
@@ -61,12 +57,16 @@ const AdminDashboard: React.FC = () => {
                     )}
                   </div>
                 )}
+                <div className="ad-controls">
+                  <button onClick={() => handleHide(index)}>Ocultar</button>
+                  <button onClick={() => handleDelete(index)}>Eliminar</button>
+                </div>
               </div>
-            ))
-          ) : (
-            <p>No ads available.</p>
-          )}
-        </Slider>
+            )
+          )
+        ) : (
+          <p>No ads available.</p>
+        )}
       </div>
     </div>
   );

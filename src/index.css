@@ -67,7 +67,14 @@ button:hover {
   padding: 1rem;
   box-sizing: border-box;
   overflow: hidden;
+
+  border: 2px solid white; 
+  background-color: black; 
+  padding: 5px; 
+  border-radius: 5px;
+  width: 100%; 
 }
+
 
 /* input fields */
 input[type="text"]:focus, input[type="password"]:focus, input[type="file"]:focus {
