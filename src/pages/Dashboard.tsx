@@ -56,24 +56,26 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="dashboard-container" style={{ padding: '1rem' }}>
-    <h2>Admin Dashboard</h2>
-    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+    <div className="dashboard-container" style={{ padding: '1rem', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+      <h2>Admin Dashboard</h2>
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', width: '100%' }}>
         <div style={{ flex: 2 }}>
-        <AdminDashboard />
+          <AdminDashboard />
         </div>
-        <div style={{ flex: 1, marginLeft: '2rem' }}>
-        <input type="file" onChange={handleFileChange} />
-        {previewUrl && (
+        <div style={{ flex: 4, marginLeft: '2rem' }}>
+          <input type="file" onChange={handleFileChange} />
+          {previewUrl && (
             <div>
-            <img src={previewUrl} alt="Preview" style={{ marginTop: '1rem', maxWidth: '100%', maxHeight: '300px' }} />
+              <img src={previewUrl} alt="Preview" style={{ marginTop: '1rem', maxWidth: '100%', maxHeight: '300px' }} />
             </div>
-        )}
-        <button onClick={handleUpload} style={{ marginTop: '1rem' }}>Subir</button>
+          )}
+          <button onClick={handleUpload} style={{ marginTop: '1rem' }}>Subir</button>
         </div>
-    </div>
+      </div>
     </div>
   );
+  
+  
 };
 
 export default Dashboard;
