@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 const AdminDashboard: React.FC = () => {
@@ -26,8 +28,19 @@ const AdminDashboard: React.FC = () => {
     setHiddenAds((prevHiddenAds) => [...prevHiddenAds, index]);
   };
 
-  const handleDelete = (index: number) => {
-    setAds((prevAds) => prevAds.filter((_, i) => i !== index));
+  const handleDelete = async (index: number) => {
+    const adToDelete = ads[index];
+    const response = await fetch(`/api/notifications/${adToDelete.id}`, {
+      method: 'DELETE',
+    });
+  
+    if (response.ok) {
+      setAds((prevAds) => prevAds.filter((_, i) => i !== index));
+      alert(`Se borró con éxito el banner`);
+    } else {
+      const errorMessage = await response.text();
+      alert(`Error deleting ad: ${errorMessage}`);
+    }
   };
 
   return (
@@ -58,8 +71,12 @@ const AdminDashboard: React.FC = () => {
                   </div>
                 )}
                 <div className="ad-controls">
-                  <button onClick={() => handleHide(index)}>Ocultar</button>
-                  <button onClick={() => handleDelete(index)}>Eliminar</button>
+                  <button className="icon-button" onClick={() => handleHide(index)}>
+                    <FontAwesomeIcon icon={faEyeSlash} />
+                  </button>
+                  <button className="icon-button delete-button" onClick={() => handleDelete(index)} style={{ color: 'red' }}>
+                    <FontAwesomeIcon icon={faTrashAlt} /> 
+                  </button>
                 </div>
               </div>
             )

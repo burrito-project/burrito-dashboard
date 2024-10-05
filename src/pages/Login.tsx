@@ -17,11 +17,17 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh', // Full viewport height to center vertically
+    }}>
       <form onSubmit={handleSubmit}>
+      <h2>Login</h2>
         <div>
-          <label>Username:</label>
+          <label style={{ color: 'white' }}>Username:</label>
           <input
             type="text"
             value={username}
@@ -29,7 +35,7 @@ const Login: React.FC = () => {
           />
         </div>
         <div>
-          <label>Password:</label>
+          <label style={{ color: 'white' }}>Password:</label>
           <input
             type="password"
             value={password}
