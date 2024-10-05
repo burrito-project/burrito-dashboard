@@ -1,19 +1,32 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import NavBar from './components/NavBar';
 
 const App: React.FC = () => {
+  const location = useLocation();
+
+  // Determine if the current path is the login page
+  const isLoginPage = location.pathname === '/';
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </Router>
+    <div style={{ display: 'flex' }}>
+      {!isLoginPage && <NavBar />} {/* Conditionally render NavBar */}
+      <div style={{ marginLeft: isLoginPage ? '0' : '100px', width: '100%' }}>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </div>
+    </div>
   );
 };
 
-export default App;
+const Root: React.FC = () => (
+  <Router>
+    <App />
+  </Router>
+);
+
+export default Root;

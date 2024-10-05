@@ -1,0 +1,48 @@
+/* SideNavbar.css */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: #000000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease;
+    padding-top: 20px;
+    overflow: hidden;
+    border-right: 1px solid white;
+    ;
+}
+
+.sidebar.closed {
+    width: 60px;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.nav-list {
+    list-style-type: none;
+    padding: 1rem;
+}
+
+.nav-list li {
+    padding: 15px 20px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.nav-list li a:hover {
+    background-color: #4d4c4c94;
+    padding: 1rem;
+}
