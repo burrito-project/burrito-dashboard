@@ -15,14 +15,16 @@ const NavBar: React.FC = () => {
              <button onClick={toggleSidebar} style={{ margin: '10px', color: 'white', background: 'none', border: 'none', cursor: 'pointer' }}>
                 <FontAwesomeIcon icon={isOpen ? faTimes : faBars} size="lg" />
             </button>
-            <ul className="nav-list">
-                <li>
-                <a href="/dashboard">Dashboard</a>
-                </li>
-                <li>
-                <a href="/batery">Batería</a>
-                </li>
-            </ul>
+            {isOpen && (
+                <ul className="nav-list">
+                    <li>
+                        <a href="/dashboard">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/batery">Batería</a>
+                    </li>
+                </ul>
+            )}
         </div>
     );
 }
