@@ -5,6 +5,7 @@ import '../index.css';
 
 const Dashboard: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [base64File, setBase64File] = useState<string | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   // Convertir archivo a Base64
@@ -26,7 +27,7 @@ const Dashboard: React.FC = () => {
       // Convertir archivo a Base64
       try {
         const base64 = await convertToBase64(file);
-        setSelectedFile(base64 as any);
+        setBase64File(base64);
       } catch (error) {
         console.error('Error al convertir el archivo a Base64:', error);
       }
@@ -34,19 +35,21 @@ const Dashboard: React.FC = () => {
   };
 
   const handleUpload = async () => {
-    if (!selectedFile) return;
+    if (!selectedFile || !base64File) return;
 
     const payload = {
       is_active: true,
       ad_type: 'banner',
       priority: 1,
-      image_base64: selectedFile,
+      ad_content: null,
+      image_base64: base64File,  // Base64 de la imagen
     };
 
     try {
       await axios.post('https://api.contigosanmarcos.com/notifications', payload, {
         headers: {
           'Content-Type': 'application/json',
+          // TODO: pasar el token aquí
         },
       });
       window.location.reload();
