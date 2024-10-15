@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,15 +7,30 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simple authentication check
-    if (username === 'admin' && password === 'password') {
-      navigate('/dashboard');
-    } else {
-      alert('Invalid credentials');
+
+    try {
+        const payload = {
+            username: username,
+            password: password,
+        };
+        const response = await axios.post('/api/auth/login', payload, {
+            headers: {
+              'Content-Type':'application/json'
+            }
+        });
+
+        const { token } = response.data;
+
+        localStorage.setItem('token', token);
+
+        navigate('/dashboard');
+    } catch (error) {
+        console.error('Login failed:', error);
+        alert('Invalid credentials or server error.');
     }
-  };
+};
 
   return (
     <div

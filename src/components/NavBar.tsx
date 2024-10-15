@@ -18,10 +18,10 @@ const NavBar: React.FC = () => {
             {isOpen && (
                 <ul className="nav-list">
                     <li>
-                        <a href="/dashboard">Dashboard</a>
+                        <a href="/dashboard">Banners</a>
                     </li>
                     <li>
-                        <a href="/batery">Batería</a>
+                        <a href="/battery">Batería</a>
                     </li>
                 </ul>
             )}

@@ -46,22 +46,23 @@ const Dashboard: React.FC = () => {
     };
 
     try {
-      await axios.post('https://api.contigosanmarcos.com/notifications', payload, {
+      const token = localStorage.getItem('token');
+      await axios.post('/api/panel/notifications', payload, {
         headers: {
           'Content-Type': 'application/json',
-          // TODO: pasar el token aquí
+          'Authorization': `${token}`,
         },
       });
       window.location.reload();
     } catch (error) {
       console.error('Error al subir el archivo:', error);
-      alert('Falló la subida del banner.');
+      alert('Necesitas iniciar sesión primero');
     }
   };
 
   return (
     <div className="dashboard-container" style={{ padding: '1rem' }}>
-    <h2>Admin Dashboard</h2>
+    <h2>Banners</h2>
     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div style={{ flex: 2}}>
         <AdminDashboard />

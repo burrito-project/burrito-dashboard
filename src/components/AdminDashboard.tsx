@@ -10,7 +10,12 @@ const AdminDashboard: React.FC = () => {
   useEffect(() => {
     const fetchAds = async () => {
       try {
-        const response = await axios.get('https://api.contigosanmarcos.com/notifications');
+        const token = localStorage.getItem('token');
+        const response = await axios.get('/api/panel/notifications', {
+          headers: {
+            'Authorization': `${token}`,
+          },
+        });
         if (Array.isArray(response.data)) {
           setAds(response.data);
         } else {
@@ -18,6 +23,7 @@ const AdminDashboard: React.FC = () => {
         }
       } catch (error) {
         console.error('Error fetching ads:', error);
+        alert('Para gestionar los banners inicia sesión primero');
       }
     };
 
@@ -30,16 +36,18 @@ const AdminDashboard: React.FC = () => {
 
   const handleDelete = async (index: number) => {
     const adToDelete = ads[index];
-    const response = await fetch(`/api/notifications/${adToDelete.id}`, {
+    const response = await fetch(`/api/panel/notifications/${adToDelete.id}`, {
       method: 'DELETE',
+      headers: {
+        'Authorization': `${localStorage.getItem('token')}`,
+      }
     });
   
     if (response.ok) {
       setAds((prevAds) => prevAds.filter((_, i) => i !== index));
       alert(`Se borró con éxito el banner`);
     } else {
-      const errorMessage = await response.text();
-      alert(`Error deleting ad: ${errorMessage}`);
+      alert(`Necesitas iniciar sesión primero`);
     }
   };
 
