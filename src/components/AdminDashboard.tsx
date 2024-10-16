@@ -37,7 +37,7 @@ const AdminDashboard: React.FC = () => {
   }, []);
 
   const handleDelete = async (index: number) => {
-    if (!window.confirm('Are you sure you want to delete this ad?')) {
+    if (!window.confirm('¿Seguro que quieres eliminar este banner?')) {
       return;
     }
 
