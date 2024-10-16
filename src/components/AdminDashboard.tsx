@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 const AdminDashboard: React.FC = () => {
   const [ads, setAds] = useState<any[]>([]);
-  const [hiddenAds, setHiddenAds] = useState<number[]>([]);
 
   useEffect(() => {
     const fetchAds = async () => {
@@ -30,10 +29,6 @@ const AdminDashboard: React.FC = () => {
     fetchAds();
   }, []);
 
-  const handleHide = (index: number) => {
-    setHiddenAds((prevHiddenAds) => [...prevHiddenAds, index]);
-  };
-
   const handleDelete = async (index: number) => {
     const adToDelete = ads[index];
     const response = await fetch(`https://api.contigosanmarcos.com/panel/notifications/${adToDelete.id}`, {
@@ -56,7 +51,6 @@ const AdminDashboard: React.FC = () => {
       <div className="ad-list">
         {ads.length > 0 ? (
           ads.map((ad, index) =>
-            hiddenAds.includes(index) ? null : (
               <div key={index} className={`ad ad-item ${ad.ad_type}`}>
                 {ad.ad_type === 'banner' ? (
                   <div className="ad-banner">
@@ -79,15 +73,11 @@ const AdminDashboard: React.FC = () => {
                   </div>
                 )}
                 <div className="ad-controls">
-                  <button className="icon-button" onClick={() => handleHide(index)}>
-                    <FontAwesomeIcon icon={faEyeSlash} />
-                  </button>
                   <button className="icon-button delete-button" onClick={() => handleDelete(index)} style={{ color: 'red' }}>
                     <FontAwesomeIcon icon={faTrashAlt} /> 
                   </button>
                 </div>
               </div>
-            )
           )
         ) : (
           <p>No ads available.</p>
