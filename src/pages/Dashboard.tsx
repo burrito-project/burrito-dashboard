@@ -47,7 +47,7 @@ const Dashboard: React.FC = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('/api/panel/notifications', payload, {
+      await axios.post('https://api.contigosanmarcos.com/panel/notifications', payload, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `${token}`,

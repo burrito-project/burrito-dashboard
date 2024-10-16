@@ -11,7 +11,7 @@ const AdminDashboard: React.FC = () => {
     const fetchAds = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('/api/panel/notifications', {
+        const response = await axios.get('https://api.contigosanmarcos.com/panel/notifications', {
           headers: {
             'Authorization': `${token}`,
           },
@@ -36,7 +36,7 @@ const AdminDashboard: React.FC = () => {
 
   const handleDelete = async (index: number) => {
     const adToDelete = ads[index];
-    const response = await fetch(`/api/panel/notifications/${adToDelete.id}`, {
+    const response = await fetch(`https://api.contigosanmarcos.com/panel/notifications/${adToDelete.id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `${localStorage.getItem('token')}`,
