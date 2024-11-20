@@ -1,13 +1,12 @@
 # Burrito Admin Dashboard
 
-Status: production ready, but partially finished
+Estado: listo para producción, pero parcialmente terminado
 
-Dashboard for staff/admin users to manage protected resources.
+Dashboard para usuarios del personal/admin para gestionar recursos protegidos.
 
-## Features
+## Características
 
-- Notifications: Add and delete app banners. No popup or posts are
-  currently supported.
-- Battery: Quick view of the remaining app battery.
+- Notificaciones: Añadir y eliminar banners de la aplicación. Actualmente no se soportan popups ni publicaciones.
+- Batería: Vista rápida de la batería restante de la aplicación.
 
-Written with React and Vite.
+Escrito con React y Vite.
