@@ -1,13 +1,12 @@
-# Additional notes
+# Notas adicionales
 
-Before deploying the dashboard, make sure to:
+Antes de desplegar el dashboard, asegúrate de:
 
-- Ensure that a user account with the appropriate permissions
-  is created in the database. This allows access control and
-  ensures that each user can interact with the dashboard as
-  expected.
+- Verificar que se haya creado una cuenta de usuario con los permisos adecuados
+  en la base de datos. Esto permite el control de acceso y
+  asegura que cada usuario pueda interactuar con el dashboard como
+  se espera.
 
-- Verify that the backend server is running and accessible.
-  The dashboard relies on the server for data retrieval
-  and updates, so a live connection is essential for full
-  functionality.
+- Verificar que el servidor backend esté funcionando y sea accesible.
+  El dashboard depende del servidor para la recuperación de datos
+  y actualizaciones, por lo que una conexión en vivo es esencial para su funcionalidad completa.
