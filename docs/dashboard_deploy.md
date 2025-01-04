@@ -1,16 +1,16 @@
-# Despliegue del Dashboard
+# Dashboard deployment
 
-El dashboard es una simple aplicación de React Vite, por lo que debería
-ser fácil de desplegar.
+The dashboard is a simple React Vite application so it should
+be straightforward to deploy.
 
 ## Cloudflare Pages
 
-Con la ayuda de GitHub Actions, el despliegue está mayormente automatizado.
-Asegúrate de tener lo siguiente configurado:
+With the help of GitHub Actions, the deployment is mostly automated.
+Ensure you have the following in place:
 
-1. **Configurar GitHub Secrets:** Añade tu `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID` en los secretos de tu repositorio de GitHub.
+1. **Set up GitHub Secrets:** Add your `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` in your GitHub repository secrets.
 
-2. **Verificar el flujo de trabajo de GitHub Actions:** Asegúrate de que el archivo de flujo de trabajo esté configurado correctamente para construir y desplegar la aplicación. La configuración está en
+2. **Verify the GitHub Actions Workflow:** Ensure the workflow file is properly configured to build and deploy the application. The configuration is in
 `.github/workflows/cloudflare-deploy.yml`
 
-Desplegado en <https://burrito-dashboard.pages.dev/>
+Deployed at <https://burrito-dashboard.pages.dev/>
