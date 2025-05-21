@@ -14,7 +14,7 @@ const AdminDashboard: React.FC = () => {
       try {
         setLoading(true); // Start loading
         const token = localStorage.getItem('token');
-        const response = await axios.get('https://api.burritosanmarcos.com/panel/notifications', {
+        const response = await axios.get('https://api.burritosanmarcos.com/notifications', {
           headers: {
             'Authorization': `${token}`,
           },
@@ -42,7 +42,7 @@ const AdminDashboard: React.FC = () => {
     }
 
     const adToDelete = notifications[index];
-    const response = await fetch(`https://api.burritosanmarcos.com/panel/notifications/${adToDelete.id}`, {
+    const response = await fetch(`https://api.burritosanmarcos.com/notifications/${adToDelete.id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `${localStorage.getItem('token')}`,
