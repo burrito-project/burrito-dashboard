@@ -15,7 +15,7 @@ const Login: React.FC = () => {
             username: username,
             password: password,
         };
-        const response = await axios.post('https://api.contigosanmarcos.com/auth/login', payload, {
+        const response = await axios.post('https://api.burritosanmarcos.com/auth/login', payload, {
             headers: {
               'Content-Type':'application/json'
             }

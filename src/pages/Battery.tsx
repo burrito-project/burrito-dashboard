@@ -7,7 +7,7 @@ const Battery: React.FC = () => {
 
     const getBattery = async () => {
         try {
-            const response = await axios.get('https://api.contigosanmarcos.com/battery')
+            const response = await axios.get('https://api.burritosanmarcos.com/battery')
             setBatteryLevel(response.data.battery);
         } catch (error) {
             console.error ('Error obteniendo la batería', error);
