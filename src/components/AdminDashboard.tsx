@@ -14,7 +14,7 @@ const AdminDashboard: React.FC = () => {
       try {
         setLoading(true); // Start loading
         const token = localStorage.getItem('token');
-        const response = await axios.get('https://api.burritosanmarcos.com/.com/panel/notifications', {
+        const response = await axios.get('https://api.burritosanmarcos.com/panel/notifications', {
           headers: {
             'Authorization': `${token}`,
           },
